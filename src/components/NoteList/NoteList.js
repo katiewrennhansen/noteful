@@ -7,7 +7,17 @@ import Note from '../Note/Note'
 class NoteList extends Component{
   render() {
         const notes = this.props.notes.map(note => {
-            if (note.folderId === this.props.folderId) {
+            if (!this.props.folderId) {
+                return (
+                    <div key={note.id}>
+                    <Note 
+                        data={note}
+                        name={note.name}
+                        modified={note.modified}
+                    />
+                    </div>
+                )
+            } else if (note.folderId === this.props.folderId) {
                 return (
                     <div key={note.id}>
                     <Note 
@@ -20,7 +30,6 @@ class NoteList extends Component{
             } 
         })
         
-
         return (
         <main className='main'>
             <div className='note-list'>
