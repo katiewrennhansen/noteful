@@ -42,6 +42,15 @@ class App extends Component{
               </div>
             }
           />
+          {/* need to combine this and above routes - still need to figure out how */}
+          <Route 
+            path='/folder/add-folder'
+            render={() => 
+              <div>
+                <AddFolder />
+              </div>
+            }
+          />
           <Route 
             path='/add-note'
             render={() => 
