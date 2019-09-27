@@ -1,0 +1,7 @@
+header {
+    padding: 40px 200px;
+    border: 1px solid gray;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+}
