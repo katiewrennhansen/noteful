@@ -9,17 +9,6 @@ import FullNote from './components/FullNote/FullNote'
 
 class App extends Component{
 
-  // filterNotes(){
-  //     const folders = this.props.listItems.folders.filter(folder => {
-  //       if (this.props.listItems.notes.includes(folder.id)){
-  //         console.log('includes')
-  //       }
-  //       })
-  // }
-  // filterNotes(){
-  //   console.log(this.props.history.pathname.location)
-  // }
-
 
   render() {
 
@@ -36,15 +25,11 @@ class App extends Component{
                   <Sidebar 
                     folders={this.props}
                     filterNotes={this.filterNotes}
-                  >
-                  </Sidebar>
-                  
+                  />
                   <NoteList 
                     notes={this.props.listItems.notes}
                     folders={this.props.listItems.folders}
-                  >
-                  </NoteList>
-          
+                  />
                 </div>
                 )
               }}
@@ -67,29 +52,32 @@ class App extends Component{
           />
           <Route 
             path='/note/:id'
-            render={() => 
-              <FullNote 
-                note={this.props.listItems.notes[0]}
-              />
+            render={(history) => {
+              const noteId = history.match.params.id;
+              return (
+                <FullNote 
+                  noteId={noteId}
+                  notes={this.props.listItems.notes}
+                />
+              )
+            }
+              
             }
           />
           <Route 
             path='/folder/:id'
             render={(history) => {
               const id = history.match.params.id;
-              console.log(id)
               return (
               <div>
                 <Sidebar 
                   folders={this.props}
                   filterNotes={this.filterNotes}
                 />
-
                 <NoteList 
                   notes={this.props.listItems.notes}
                   folders={this.props.listItems.folders}
                   folderId={id}
-
                 />
               </div>
               )}}
