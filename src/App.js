@@ -7,13 +7,49 @@ import AddNote from './components/AddNote/AddNote'
 import NoteList from './components/NoteList/NoteList'
 import FullNote from './components/FullNote/FullNote'
 import NoteContext from './NoteContext'
+import config from './config'
 
 
 class App extends Component{
   state = {
-    folders: this.props.listItems.folders,
-    notes: this.props.listItems.notes
+    folders: [],
+    notes: []
   }
+
+  componentDidMount(){
+    fetch(`${config.API_ENDPOINT}/folders`)
+    .then(res => {
+      if(!res.ok){
+        console.log('not okay')
+      }
+      return res.json();
+    })
+    .then(data => {
+      this.setState({
+        folders: data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    fetch(`${config.API_ENDPOINT}/notes`)
+    .then(res => {
+      if(!res.ok){
+        console.log('not okay')
+      }
+      return res.json();
+    })
+    .then(data => {
+      this.setState({
+        notes: data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
 
   setFolders = folders => {
     this.setState({
@@ -28,6 +64,8 @@ class App extends Component{
   }
 
   render() {
+
+    console.log(this.state)
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes
