@@ -2,10 +2,49 @@ import React, { Component} from 'react';
 import { Link } from 'react-router-dom'
 import './FullNote.css'
 import NoteContext from '../../NoteContext'
+import config from '../../config'
 
 
 class FullNote extends Component{
+  static defaultProps = {
+    match: {
+        params: {
+
+        }
+    }
+}
+
   static contextType = NoteContext
+
+  handleDeleteNote = noteId => {
+    this.props.history.push('/');
+  }
+
+  handleClickDelete = e => {
+    e.preventDefault();
+    const noteId = this.props.noteId
+
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+    .then(res => {
+      if(!res.ok){
+        console.log('not okay')
+      }
+      return res.json();
+    })
+    .then(() => {
+      this.context.deleteNote(noteId)
+      this.handleDeleteNote(noteId)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+  }
 
   render() {
         const notes = this.context.notes;
@@ -19,7 +58,7 @@ class FullNote extends Component{
                 <Link to='/'>
                     <button>Back</button>  
                 </Link>
-                <button>Delete</button>
+                <button onClick={this.handleClickDelete}>Delete</button>
               </div>
             )
           }

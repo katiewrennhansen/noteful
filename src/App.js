@@ -17,6 +17,7 @@ class App extends Component{
   }
 
   componentDidMount(){
+    //call API for folders data
     fetch(`${config.API_ENDPOINT}/folders`)
     .then(res => {
       if(!res.ok){
@@ -32,6 +33,8 @@ class App extends Component{
     .catch(err => {
       console.log(err)
     })
+    
+    //call API for notes data
     fetch(`${config.API_ENDPOINT}/notes`)
     .then(res => {
       if(!res.ok){
@@ -49,26 +52,21 @@ class App extends Component{
     })
   }
 
-
-
-  setFolders = folders => {
-    this.setState({
-      folders
-    })
+  deleteNote = noteId => {
+      const newList = this.state.notes.filter(note => {
+        return note.id !== noteId
+      })
+      this.setState({
+        notes: newList
+      })
   }
 
-  setNotes = notes => {
-    this.setState({
-      notes
-    })
-  }
 
   render() {
-
-    console.log(this.state)
     const contextValue = {
       folders: this.state.folders,
-      notes: this.state.notes
+      notes: this.state.notes,
+      deleteNote: this.deleteNote,
     }
     return (
       <div className='App'>

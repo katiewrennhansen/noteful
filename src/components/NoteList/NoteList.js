@@ -6,7 +6,12 @@ import NoteContext from '../../NoteContext'
 
 
 class NoteList extends Component{
+    
+
     static contextType = NoteContext;
+   
+  
+
   render() {
       const contextNotes = this.context.notes;
         const notes = contextNotes.map(note => {
@@ -17,6 +22,7 @@ class NoteList extends Component{
                         data={note}
                         name={note.name}
                         modified={note.modified}
+                        handleDeleteNote={this.handleDeleteNote}
                     />
                     </div>
                 )
@@ -27,6 +33,7 @@ class NoteList extends Component{
                         data={note}
                         name={note.name}
                         modified={note.modified}
+                        handleDeleteNote={this.handleDeleteNote}
                     />
                     </div>
                 )
