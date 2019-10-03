@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './NoteList.css'
 import Note from '../Note/Note'
+import NoteContext from '../../NoteContext'
 
 
 class NoteList extends Component{
+    static contextType = NoteContext;
   render() {
-        const notes = this.props.notes.map(note => {
+      const contextNotes = this.context.notes;
+        const notes = contextNotes.map(note => {
             if (!this.props.folderId) {
                 return (
                     <div key={note.id}>

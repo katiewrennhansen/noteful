@@ -5,7 +5,7 @@ class Folder extends Component {
     render(){
         return (
             <div className='folder'>
-              <h3 onClick={this.props.filterNotes}>{this.props.name}</h3>
+              <h3>{this.props.name}</h3>
             </div>
           );
     }
@@ -13,3 +13,6 @@ class Folder extends Component {
 }
 
 export default Folder;
+
+
+
