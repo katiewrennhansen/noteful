@@ -6,7 +6,6 @@ import NoteContext from '../../NoteContext'
 
 
 class NoteList extends Component{
-    
 
     static contextType = NoteContext;
    

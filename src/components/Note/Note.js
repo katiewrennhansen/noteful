@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import './Note.css'
 import NoteContext from '../../NoteContext'
 import config from '../../config'
+
 
 
 class Note extends Component{
@@ -50,3 +52,10 @@ class Note extends Component{
 }
 
 export default Note;
+
+Note.propTypes = {
+  data: PropTypes.object,
+  handleDeleteNote: PropTypes.func,
+  modified: PropTypes.string,
+  name: PropTypes.string.isRequired
+}

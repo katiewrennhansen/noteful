@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './AddNote.css'
+import config from '../../config'
 
 class AddNote extends Component {
     render(){
@@ -8,9 +9,12 @@ class AddNote extends Component {
             <div className='add-note'>
                 <div className='inner-content'>
                     <h1>Add New Note</h1>
-                    <form>
+                    <form
+                        action={`${config.API_ENDPOINT}/notes`}
+                        method='POST'
+                    >
                         <label htmlFor='name'>Name</label>
-                        <input name='name' type="text"></input>
+                        <input name='name' type="text" required></input>
                         <label htmlFor='content'>Content</label>
                         <textarea name='content'></textarea>
                         <label htmlFor='folder'>Folder</label>
