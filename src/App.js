@@ -7,6 +7,7 @@ import AddNote from './components/AddNote/AddNote'
 import NoteList from './components/NoteList/NoteList'
 import FullNote from './components/FullNote/FullNote'
 import NoteContext from './NoteContext'
+import FolderError from './errorBoundaries/FolderError'
 import config from './config'
 
 
@@ -80,7 +81,9 @@ class App extends Component{
               render={() => {
                   return (
                   <div>
-                    <Sidebar />
+                    <FolderError>
+                      <Sidebar />
+                    </FolderError>
                     <NoteList />
                   </div>
                   )

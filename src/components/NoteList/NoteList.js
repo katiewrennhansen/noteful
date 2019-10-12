@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom'
 import './NoteList.css'
 import Note from '../Note/Note'
@@ -16,25 +16,26 @@ class NoteList extends Component{
         const notes = contextNotes.map(note => {
             if (!this.props.folderId) {
                 return (
-                    <div key={note.id}>
+                    <Fragment key={note.id}>
                     <Note 
+                        id={note.id}
                         data={note}
                         name={note.name}
                         modified={note.modified}
                         handleDeleteNote={this.handleDeleteNote}
                     />
-                    </div>
+                    </Fragment>
                 )
             } else if (note.folderId === this.props.folderId) {
                 return (
-                    <div key={note.id}>
+                    <Fragment key={note.id}>
                     <Note 
                         data={note}
                         name={note.name}
                         modified={note.modified}
                         handleDeleteNote={this.handleDeleteNote}
                     />
-                    </div>
+                    </Fragment>
                 )
             } 
         })

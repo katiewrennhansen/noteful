@@ -10,6 +10,7 @@ class AddNote extends Component {
                 <div className='inner-content'>
                     <h1>Add New Note</h1>
                     <form
+                        target="_blank"
                         action={`${config.API_ENDPOINT}/notes`}
                         method='POST'
                     >
