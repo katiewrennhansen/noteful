@@ -6,7 +6,6 @@ import NoteContext from '../../NoteContext'
 
 
 class AddFolder extends Component {
-
     static contextType = NoteContext;
 
     handleClickAdd = (e) => {
@@ -33,8 +32,7 @@ class AddFolder extends Component {
           .catch(err => {
             console.log(err)
           })
-
-          this.props.value.history.push('/');
+        this.props.history.push('/')
     }
 
     render(){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
 import AddFolder from './components/AddFolder/AddFolder'
@@ -69,6 +69,7 @@ class App extends Component{
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      history: this.props.history
     }
     return (
       <div className='App'>
@@ -93,7 +94,9 @@ class App extends Component{
               path='/add-folder'
               render={() => 
                 <div>
-                  <AddFolder />
+                  <AddFolder 
+                    history={this.props.history}
+                  />
                 </div>
               }
             />
@@ -102,7 +105,9 @@ class App extends Component{
               path='/folders/add-folder'
               render={() => 
                 <div>
-                  <AddFolder />
+                  <AddFolder 
+                    history={this.props.history}
+                  />
                 </div>
               }
             />
@@ -110,7 +115,9 @@ class App extends Component{
               path='/add-note'
               render={() => 
                 <div>
-                  <AddNote />
+                  <AddNote 
+                    history={this.props.history}                  
+                  />
                 </div>
               }
             />
@@ -121,6 +128,7 @@ class App extends Component{
                 return (
                   <FullNote 
                     noteId={noteId}
+                    history={this.props.history}
                   />
                 )
               }}
@@ -146,4 +154,4 @@ class App extends Component{
   
 }
 
-export default App;
+export default withRouter(App);

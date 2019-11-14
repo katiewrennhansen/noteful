@@ -4,10 +4,8 @@ import './FullNote.css'
 import NoteContext from '../../NoteContext'
 import config from '../../config'
 
-
 class FullNote extends Component{
   static contextType = NoteContext
-
 
   handleClickDelete = e => {
     e.preventDefault();
@@ -21,7 +19,6 @@ class FullNote extends Component{
       if(!res.ok){
         console.log('not okay')
       }
-      return res.json();
     })
     .then(() => {
       this.context.deleteNote(this.props.noteId)
@@ -29,6 +26,7 @@ class FullNote extends Component{
     .catch(err => {
       console.log(err)
     })
+    this.props.history.push('/');      
   }
 
   render() {
