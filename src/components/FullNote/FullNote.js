@@ -6,23 +6,11 @@ import config from '../../config'
 
 
 class FullNote extends Component{
-  static defaultProps = {
-    match: {
-        params: {
-
-        }
-    }
-}
-
   static contextType = NoteContext
 
-  handleDeleteNote = noteId => {
-    this.props.history.push('/');
-  }
 
   handleClickDelete = e => {
     e.preventDefault();
-
     fetch(`${config.API_ENDPOINT}/notes/${this.props.noteId}`, {
       method: 'DELETE',
       headers: {
@@ -37,21 +25,19 @@ class FullNote extends Component{
     })
     .then(() => {
       this.context.deleteNote(this.props.noteId)
-      this.handleDeleteNote(this.props.noteId)
     })
     .catch(err => {
       console.log(err)
     })
-
   }
 
   render() {
-        const notes = this.context.notes;
-        const displayNote = notes.map(note => {
-          if (this.props.noteId === note.id){
+        const contextNotes = this.context.notes;
+        const displayNote = contextNotes.map(note => {
+          if (this.props.noteId == note.id){
             return (
               <div className='full-note' key={note.id}>
-                <h2>{note.name}</h2>
+                <h2>{note.title}</h2>
                 <p>Last Modified on {note.modified}</p>
                 <p>{note.content}</p>
                 <Link to='/'>

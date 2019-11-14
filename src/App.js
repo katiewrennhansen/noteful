@@ -60,6 +60,7 @@ class App extends Component{
       this.setState({
         notes: newList
       })
+      this.props.history.push('/');
   }
 
 

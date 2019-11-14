@@ -12,7 +12,7 @@ class FolderList extends Component {
         const folders = contextFolders.map(folder => {
             return (
                 <li key={folder.id}>
-                    <Link to={`/folder/${folder.id}`}>
+                    <Link to={`/folders/${folder.id}`}>
                         <Folder 
                             name={folder.title}
                         />

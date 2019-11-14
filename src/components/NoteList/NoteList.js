@@ -6,54 +6,51 @@ import NoteContext from '../../NoteContext'
 
 
 class NoteList extends Component{
-
     static contextType = NoteContext;
    
-  
-
-  render() {
-      const contextNotes = this.context.notes;
-        const notes = contextNotes.map(note => {
-            if (!this.props.folderId) {
-                return (
-                    <Fragment key={note.id}>
-                    <Note 
-                        id={note.id}
-                        data={note}
-                        name={note.title}
-                        modified={note.date_modified}
-                        handleDeleteNote={this.handleDeleteNote}
-                    />
-                    </Fragment>
-                )
-            } else if (note.folderId === this.props.folderId) {
-                return (
-                    <Fragment key={note.id}>
-                    <Note 
-                        data={note}
-                        name={note.title}
-                        modified={note.date_modified}
-                        handleDeleteNote={this.handleDeleteNote}
-                    />
-                    </Fragment>
-                )
-            } 
-        })
-        
-        return (
-        <main className='main'>
-            <div className='note-list'>
-                <ul>
-                    {notes}
-                </ul>
-
-                <Link to='/add-note'>
-                    <button>Add Note</button>
-                </Link>
-            </div>
+    render() {
+        const contextNotes = this.context.notes;
+            const notes = contextNotes.map(note => {
+                if (!this.props.folderId) {
+                    return (
+                        <Fragment key={note.id}>
+                        <Note 
+                            id={note.id}
+                            data={note}
+                            name={note.title}
+                            modified={note.date_modified}
+                            handleDeleteNote={this.handleDeleteNote}
+                        />
+                        </Fragment>
+                    )
+                } else if (note.folder_id == this.props.folderId) {
+                    return (
+                        <Fragment key={note.id}>
+                        <Note 
+                            data={note}
+                            name={note.title}
+                            modified={note.date_modified}
+                            handleDeleteNote={this.handleDeleteNote}
+                        />
+                        </Fragment>
+                    )
+                } 
+            })
             
-        </main>
-        );
+            return (
+            <main className='main'>
+                <div className='note-list'>
+                    <ul>
+                        {notes}
+                    </ul>
+
+                    <Link to='/add-note'>
+                        <button>Add Note</button>
+                    </Link>
+                </div>
+                
+            </main>
+            );
   }
   
 }

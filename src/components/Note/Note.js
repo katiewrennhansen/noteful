@@ -6,14 +6,11 @@ import NoteContext from '../../NoteContext'
 import config from '../../config'
 
 
-
 class Note extends Component{
   static contextType = NoteContext;
 
-
   handleClickDelete = e => {
     e.preventDefault();
-
     fetch(`${config.API_ENDPOINT}/notes/${this.props.id}`, {
       method: 'DELETE',
       headers: {
@@ -24,7 +21,6 @@ class Note extends Component{
       if(!res.ok){
         console.log('not okay')
       }
-      return res.json();
     })
     .then(() => {
       this.context.deleteNote(this.props.id)
@@ -32,22 +28,20 @@ class Note extends Component{
     .catch(err => {
       console.log(err)
     })
-
   }
 
 
   render() {
         return (
-        <li className='note'>
-          <Link to={`/notes/${this.props.id}`}>
-            <h4>{this.props.name}</h4>
-          </Link>
-            <p>Last Modified on {this.props.modified}</p>
-            <button onClick={this.handleClickDelete}>Delete</button>
-        </li>
+          <li className='note'>
+            <Link to={`/notes/${this.props.id}`}>
+              <h4>{this.props.name}</h4>
+            </Link>
+              <p>Last Modified on {this.props.modified}</p>
+              <button onClick={this.handleClickDelete}>Delete</button>
+          </li>
         );
   }
-  
 }
 
 export default Note;
