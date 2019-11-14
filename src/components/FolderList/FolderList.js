@@ -14,7 +14,7 @@ class FolderList extends Component {
                 <li key={folder.id}>
                     <Link to={`/folder/${folder.id}`}>
                         <Folder 
-                            name={folder.name}
+                            name={folder.title}
                         />
                     </Link>
                 </li>

@@ -20,8 +20,8 @@ class NoteList extends Component{
                     <Note 
                         id={note.id}
                         data={note}
-                        name={note.name}
-                        modified={note.modified}
+                        name={note.title}
+                        modified={note.date_modified}
                         handleDeleteNote={this.handleDeleteNote}
                     />
                     </Fragment>
@@ -31,8 +31,8 @@ class NoteList extends Component{
                     <Fragment key={note.id}>
                     <Note 
                         data={note}
-                        name={note.name}
-                        modified={note.modified}
+                        name={note.title}
+                        modified={note.date_modified}
                         handleDeleteNote={this.handleDeleteNote}
                     />
                     </Fragment>

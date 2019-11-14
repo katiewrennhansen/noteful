@@ -66,7 +66,6 @@ class App extends Component{
   render() {
     const contextValue = {
       folders: this.state.folders,
-      
       notes: this.state.notes,
       deleteNote: this.deleteNote,
     }
@@ -99,7 +98,7 @@ class App extends Component{
             />
             {/* need to combine this and above routes - still need to figure out how */}
             <Route 
-              path='/folder/add-folder'
+              path='/folders/add-folder'
               render={() => 
                 <div>
                   <AddFolder />
@@ -115,7 +114,7 @@ class App extends Component{
               }
             />
             <Route 
-              path='/note/:id'
+              path='/notes/:id'
               render={(history) => {
                 const noteId = history.match.params.id;
                 return (
@@ -123,12 +122,10 @@ class App extends Component{
                     noteId={noteId}
                   />
                 )
-              }
-                
-              }
+              }}
             />
             <Route 
-              path='/folder/:id'
+              path='/folders/:id'
               render={(history) => {
                 const id = history.match.params.id;
                 return (

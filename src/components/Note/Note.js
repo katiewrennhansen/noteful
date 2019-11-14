@@ -13,9 +13,8 @@ class Note extends Component{
 
   handleClickDelete = e => {
     e.preventDefault();
-    const noteId = this.props.data.id
 
-    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+    fetch(`${config.API_ENDPOINT}/notes/${this.props.id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -28,7 +27,7 @@ class Note extends Component{
       return res.json();
     })
     .then(() => {
-      this.context.deleteNote(noteId)
+      this.context.deleteNote(this.props.id)
     })
     .catch(err => {
       console.log(err)
@@ -40,7 +39,7 @@ class Note extends Component{
   render() {
         return (
         <li className='note'>
-          <Link to={`/note/${this.props.data.id}`}>
+          <Link to={`/notes/${this.props.id}`}>
             <h4>{this.props.name}</h4>
           </Link>
             <p>Last Modified on {this.props.modified}</p>

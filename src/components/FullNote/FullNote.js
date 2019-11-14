@@ -22,9 +22,8 @@ class FullNote extends Component{
 
   handleClickDelete = e => {
     e.preventDefault();
-    const noteId = this.props.noteId
 
-    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+    fetch(`${config.API_ENDPOINT}/notes/${this.props.noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -37,8 +36,8 @@ class FullNote extends Component{
       return res.json();
     })
     .then(() => {
-      this.context.deleteNote(noteId)
-      this.handleDeleteNote(noteId)
+      this.context.deleteNote(this.props.noteId)
+      this.handleDeleteNote(this.props.noteId)
     })
     .catch(err => {
       console.log(err)
